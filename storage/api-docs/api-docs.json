@@ -1,0 +1,100 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "ТАТНЕФТЬ проект",
+        "description": "Описание проекта татнефть, разработка бэк части",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Авторизация"
+                ],
+                "summary": "Регистрация",
+                "description": "Регистрация пользователя по email, имени и телефону",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "name": {
+                                                "type": "text",
+                                                "example": "Иван"
+                                            },
+                                            "email": {
+                                                "type": "text",
+                                                "example": "example@example.com"
+                                            },
+                                            "phone": {
+                                                "type": "text",
+                                                "example": "+79885676746"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Ошибка при регистрации, смотреть массив с ошибками ERRORS"
+                    },
+                    "500": {
+                        "description": "Ошибка сервера"
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Авторизация"
+                ],
+                "summary": "Вход",
+                "description": "Авторизация пользователя по email и автоматически сгенерированному паролю",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf": [
+                                    {
+                                        "properties": {
+                                            "email": {
+                                                "type": "text",
+                                                "example": "example@example.com"
+                                            },
+                                            "password": {
+                                                "type": "text",
+                                                "example": "examp12345"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Ошибка при входе, смотреть массив с ошибками ERRORS"
+                    },
+                    "500": {
+                        "description": "Ошибка сервера"
+                    }
+                }
+            }
+        }
+    }
+}
